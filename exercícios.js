@@ -14,58 +14,72 @@ if (per == "M") {
     } */
 
 
+
+
+
 console.log("Digite o n1:");
 
-process.stdin.on('data', function (dados) {
-
-    let n1 = dados.toString().trim();
-    console.log("O valor de 'a' é " + n1);
-    console.log("Digite o n2:");
-});
+let n1 = null;
+let n2 = null;
+let n3 = null;
 
 process.stdin.on('data', function (dados) {
-    let n2 = dados.toString().trim();
-    console.log("O valor de 'b' é " + n2);
-    console.log("Digite o n3:");
 
-});
+    // atribuir o input ao n1
+    if (n1 == null) {
 
-process.stdin.on('data', function (dados) {
-    let n3 = dados.toString().trim();
-    console.log("O valor de 'c' é " + n3);
-});
+        n1 = dados.toString().trim();
+        console.log("O valor de 'a' é " + n1);
+        console.log("Digite o n2:");
 
-let a = n1;
-let b = n2;
-let c = n3;
-let delta = (b * b) - ((4 * a) * c);
+    // atribuir o input ao n2
+    } else if (n2 == null) {
 
-function raiz(a, b, c) {
+        n2 = dados.toString().trim();
+        console.log("O valor de 'b' é " + n2);
+        console.log("Digite o n3:");
 
-    console.log("O delta é: " + delta);
+    // atribuir o input ao n3
+    } else if (n3 == null) {
 
-    if (a == 0) {
-        console.log("Não é equação do segundo grau")
-    } else if (delta < 0) {
-        console.log("A equação não possui raizes reais")
-    } else if (delta == 0) {
-        console.log("A equação possui apenas uma raiz")
-        let resultado0 = -b / (2 * a);
-        return resultado0;
-        console.log(resultado0);
-        //informar qual raiz
+        n3 = dados.toString().trim();
+        console.log("O valor de 'c' é " + n3);
+
     } else {
 
-        let resultado1 = ((-b) + Math.sqrt(delta)) / (2 * a);
-        let resultado2 = ((-b) - Math.sqrt(delta)) / (2 * a);
-        let raizes = resultado1.toFixed(2) + " e " + resultado2.toFixed(2);
-        return raizes;
-        console.log(raizes);
-    }
-}
+    // executar a formula de bhaskara com os 3 inputs
+        function raiz(n1, n2, n3) {
 
-console.log(raiz(a, b, c))
-process.exit();
+            let delta = (n2 * n2) - ((4 * n1) * n3);
 
+            console.log("O delta é: " + delta);
 
+            // validações da fórmula
+            if (n1 == 0) {
+                console.log("Não é equação do segundo grau")
+            } else if (delta < 0) {
+                console.log("A equação não possui raizes reais")
+            } else if (delta == 0) {
+                console.log("A equação possui apenas uma raiz")
+                let resultado0 = -n2 / (2 * n1);
+                return resultado0;
+                console.log(resultado0);
 
+            } else {
+
+                let resultado1 = ((-n2) + Math.sqrt(delta)) / (2 * n1);
+                let resultado2 = ((-n2) - Math.sqrt(delta)) / (2 * n1);
+                let raizes = resultado1.toFixed(2) + " e " + resultado2.toFixed(2);
+                return raizes;
+                console.log(raizes);
+            }
+        }
+
+        // chamar a função de bhaskara
+        console.log(raiz(n1, n2, n3))
+
+        // encerrar o terminal
+        process.exit();
+
+    };
+});

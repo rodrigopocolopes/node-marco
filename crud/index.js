@@ -24,7 +24,21 @@ export function del() {
 
 }
 
-export function search() {
+/**
+ * Retorna um cliente pelo id
+ * @param {number} id 
+ * @returns {JSON}
+ */
+export async function search(id) {
+
+    let sql = "SELECT * FROM clientes WHERE id = " + id;
+
+    const db = await open({
+        filename: "clientes.db",
+        driver: sqlite3.Database
+    });
+
+    return await db.get(sql);
 
 }
 

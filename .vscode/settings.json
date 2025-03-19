@@ -3,5 +3,6 @@
     "editor.fontSize": 10,
     "debug.console.fontSize": 10,
     "markdown.preview.fontSize": 10,
-    "terminal.integrated.fontSize": 10
+    "terminal.integrated.fontSize": 10,
+    "dbcode.connections": []
 }

@@ -136,8 +136,8 @@ export async function search(id) {
  * @returns {JSON}
  */
 
-export async function list() {
-    let sql = "SELECT * FROM clientes ORDER BY id";
+export async function list(coluna = "id", ordem = " ASC") {
+    let sql = "SELECT * FROM clientes ORDER BY " + coluna + " " + ordem;
 
     const db = await conexao();
 

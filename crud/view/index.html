@@ -22,28 +22,29 @@
 
         <h1 class="h1">Clientes</h1>
 
-        <button type="button" class="btn btn-primary mb-2 d-flex justify-self-end" data-bs-toggle="modal" data-bs-target="#form-cadastro">
+        <button type="button" class="btn btn-primary mb-2 d-flex justify-self-end" data-bs-toggle="modal"
+            data-bs-target="#form-cadastro">
             Cadastrar
         </button>
 
 
 
-        
-        
+
+
         <table class="table table-dark table-striped">
             <thead>
                 <tr>
-                    <th scope="col">Id</th>
-                    <th scope="col">Nome</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Telefone</th>
-                    <th scope="col">Cidade</th>
-                    <th scope="col">Idade</th>
+                    <th scope="col"><a href="#" coluna="id" ord=" ASC" class="link-primary ord">Id</a></th>
+                    <th scope="col"><a href="#" coluna="nome" ord=" DESC" class="link-light ord">Nome</a></th>
+                    <th scope="col"><a href="#" coluna="email" ord=" DESC" class="link-light ord">Email</a></th>
+                    <th scope="col"><a href="#" coluna="telefone" ord=" DESC" class="link-light ord">Telefone</a></th>
+                    <th scope="col"><a href="#" coluna="cidade" ord=" DESC" class="link-light ord">Cidade</a></th>
+                    <th scope="col"><a href="#" coluna="idade" ord=" DESC" class="link-light ord">Idade</a></th>
                 </tr>
             </thead>
 
             <tbody id="lista">
-               
+
             </tbody>
         </table>
 
@@ -88,6 +89,23 @@
             </div>
         </div>
     </div>
+    <!-- fim da modal -->
+
+    <!-- TOAST -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="toast-cadastro" class="toast" role="alert">
+            <div class="toast-header">
+                <strong class="me-auto">Notificação do sistema</strong>
+                <small>Agora mesmo</small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+            </div>
+            <div class="toast-body">
+                Cliente cadastrado com sucesso!
+            </div>
+        </div>
+    </div>
+
+    <!-- FIM DO TOAST -->
 
 
 </body>

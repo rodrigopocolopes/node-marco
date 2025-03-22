@@ -16,8 +16,14 @@ app.use(express.urlencoded({ extended: true }))
 // ROUTE -> ACTION
 app.get("/clientes", async (req, res) => {
 
-    let dados = await list();
-    res.json(dados);
+    let { coluna, ord } = req.query;
+
+    try {
+        let dados = await list(coluna, ord);
+        res.json(dados);
+    } catch (erro) {
+        res.status("404").send("Coluna não existe")
+    }
 
 });
 

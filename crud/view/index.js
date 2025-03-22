@@ -1,23 +1,34 @@
 $(document).ready(function () {
 
-    $.getJSON("http://localhost:3000/clientes", function (dados) {
+    function listarClientes(coluna, ord) {
 
-        console.log(dados);
+        let dados = {
+            coluna,
+            ord
+        }
 
-        dados.forEach((item) => {
+        $.getJSON("http://localhost:3000/clientes", dados, function (dados) {
 
-            let html = '<tr>'
-                + '<td scope="row">' + item.id + '</td>'
-                + '<td scope="row">' + item.nome + '</td>'
-                + '<td scope="row">' + item.email + '</td>'
-                + '<td scope="row">' + item.telefone + '</td>'
-                + '<td scope="row">' + item.cidade + '</td>'
-                + '<td scope="row">' + item.idade + '</td>'
-                + '</tr>'
+            $("#lista").empty();
 
-            $("#lista").append(html);
-        });
-    }); // fim getJSON
+            dados.forEach((item) => {
+
+                let html = '<tr>'
+                    + '<td scope="row">' + item.id + '</td>'
+                    + '<td scope="row">' + item.nome + '</td>'
+                    + '<td scope="row">' + item.email + '</td>'
+                    + '<td scope="row">' + item.telefone + '</td>'
+                    + '<td scope="row">' + item.cidade + '</td>'
+                    + '<td scope="row">' + item.idade + '</td>'
+                    + '</tr>'
+
+                $("#lista").append(html);
+            });
+        }); // fim getJSON
+    }
+
+    listarClientes();
+
 
     $("#bt-salvar").click(() => {
 
@@ -46,10 +57,53 @@ $(document).ready(function () {
             }
             $.post("http://localhost:3000/clientes/novo", dados, (retorno) => {
                 console.log("retorno");
-            });
+
+                if (retorno == true) {
+
+                    $("#form-cadastro").modal("hide");
+
+                    let html = '<tr>'
+                        + '<td scope="row">' + + '</td>'
+                        + '<td scope="row">' + dados.nome + '</td>'
+                        + '<td scope="row">' + dados.email + '</td>'
+                        + '<td scope="row">' + dados.telefone + '</td>'
+                        + '<td scope="row">' + dados.cidade + '</td>'
+                        + '<td scope="row">' + dados.idade + '</td>'
+                        + '</tr>'
+
+                    $("#lista").append(html);
+                    $("#toast-cadastro").toast("show");
+
+                    $("input").val("");
+
+                }
+
+            }); // fim do post
 
         }
 
     }); //fim do bt salvar
+
+    $(".ord").click(function () {
+
+
+        let coluna = $(this).attr("coluna");
+        let ord = $(this).attr("ord");
+
+        ord = (ord == " ASC") ? " DESC" : " ASC";
+
+        $(this).attr("ord", ord)
+
+        
+        $(".ord").addClass("link-light");
+        $(this).removeClass("link-light");
+        $(this).addClass("link-primary");
+        
+        listarClientes(coluna, ord);
+
+
+
+    }); // fim do click ord
+
 
 });

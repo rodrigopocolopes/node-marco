@@ -58,7 +58,7 @@ let backend = (location.hostname != 'localhost') ? 'https://backend-cadastro-g3l
             let dados = {
                 nome, email, telefone, cidade, idade
             }
-            $.post(backend + "/clientes", dados, (retorno) => {
+            $.post(backend + "/clientes/novo", dados, (retorno) => {
                 console.log("retorno");
 
                 if (retorno == true) {

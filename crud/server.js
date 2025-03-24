@@ -12,6 +12,10 @@ app.use(cors());
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
+let porta = (process.env.PROD == 'true') ? 80 : 3000;
+
+
+
 
 // ROUTE -> ACTION
 app.get("/clientes", async (req, res) => {
@@ -42,6 +46,6 @@ app.post("/clientes/novo", async (req, res) => {
 })
 
 // 
-app.listen(3000, () => {
+app.listen(porta, () => {
     console.log("Servidor iniciado")
 })

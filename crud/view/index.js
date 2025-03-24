@@ -1,5 +1,8 @@
 $(document).ready(function () {
 
+let backend = (location.hostname = 'localhost') ? 'https://backend-cadastro-g3la.onrender.com/clientes' : 'http://localhost:3000';
+
+
     function listarClientes(coluna, ord) {
 
         let dados = {
@@ -7,7 +10,7 @@ $(document).ready(function () {
             ord
         }
 
-        $.getJSON("http://localhost:3000/clientes", dados, function (dados) {
+        $.getJSON(backend + "/clientes", dados, function (dados) {
 
             $("#lista").empty();
 
@@ -55,7 +58,7 @@ $(document).ready(function () {
             let dados = {
                 nome, email, telefone, cidade, idade
             }
-            $.post("http://localhost:3000/clientes/novo", dados, (retorno) => {
+            $.post(backend + "/clientes", dados, (retorno) => {
                 console.log("retorno");
 
                 if (retorno == true) {

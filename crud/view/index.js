@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-let backend = (location.hostname = 'localhost') ? 'https://backend-cadastro-g3la.onrender.com/clientes' : 'http://localhost:3000';
+let backend = (location.hostname == 'localhost') ? 'https://backend-cadastro-g3la.onrender.com/clientes' : 'http://localhost:3000';
 
 
     function listarClientes(coluna, ord) {

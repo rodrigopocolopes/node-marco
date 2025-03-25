@@ -36,7 +36,7 @@ async function conexao() {
  * @param {number} idade 
  * @returns {JSON}
  */
-export async function add(nome, email, cidade, tel, idade) {
+export async function add(nome, email, tel, cidade, idade) {
 
     let sql = "INSERT INTO clientes"
         + "(nome, email, telefone, cidade, idade)"

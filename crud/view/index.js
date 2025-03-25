@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-let backend = (location.hostname != 'localhost') ? 'https://backend-cadastro-g3la.onrender.com' : 'http://localhost:3000';
+    let backend = (location.hostname != 'localhost') ? 'https://backend-cadastro-g3la.onrender.com' : 'http://localhost:3000';
 
 
     function listarClientes(coluna, ord) {
@@ -23,6 +23,7 @@ let backend = (location.hostname != 'localhost') ? 'https://backend-cadastro-g3l
                     + '<td scope="row">' + item.telefone + '</td>'
                     + '<td scope="row">' + item.cidade + '</td>'
                     + '<td scope="row">' + item.idade + '</td>'
+                    + '<td scope="row"><button codigo="' + item.id + '" class="bt-del"><i class="bi bi-x-circle-fill"></i></button></td>'
                     + '</tr>'
 
                 $("#lista").append(html);
@@ -75,6 +76,7 @@ let backend = (location.hostname != 'localhost') ? 'https://backend-cadastro-g3l
                         + '</tr>'
 
                     $("#lista").append(html);
+
                     $("#toast-cadastro").toast("show");
 
                     $("input").val("");
@@ -97,16 +99,29 @@ let backend = (location.hostname != 'localhost') ? 'https://backend-cadastro-g3l
 
         $(this).attr("ord", ord)
 
-        
+
         $(".ord").addClass("link-light");
         $(this).removeClass("link-light");
         $(this).addClass("link-primary");
-        
+
         listarClientes(coluna, ord);
 
 
 
     }); // fim do click ord
 
+    $("#lista").on('click', '.bt-del', function () {
+
+        let dados = {
+            id: $(this).attr("codigo")
+        }
+
+        $.post(backend + "/clientes/delete", dados, (retorno) => {
+
+            listarClientes();
+
+        });
+
+    }) // fim do bt-del
 
 });

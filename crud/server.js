@@ -43,7 +43,18 @@ app.post("/clientes/novo", async (req, res) => {
 
     res.json(retorno);
 
-})
+});
+
+app.post("/clientes/delete", async (req, res) => {
+
+    let { id } = req.body
+
+    let retorno = await del(id);
+
+    res.json(retorno);
+
+});
+
 
 // 
 app.listen(porta, () => {

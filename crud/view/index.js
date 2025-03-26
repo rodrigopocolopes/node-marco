@@ -1,3 +1,9 @@
+let usuario = sessionStorage.getItem("logado");
+
+if (!usuario) {
+    location.assign("login.html");
+}
+
 $(document).ready(function () {
 
     let backend = (location.hostname != 'localhost') ? 'https://backend-cadastro-g3la.onrender.com' : 'http://localhost:3000';
@@ -23,7 +29,7 @@ $(document).ready(function () {
                     + '<td scope="row">' + item.telefone + '</td>'
                     + '<td scope="row">' + item.cidade + '</td>'
                     + '<td scope="row">' + item.idade + '</td>'
-                    + '<td scope="row"><button codigo="' + item.id + '" class="bt-del"><i class="bi bi-x-circle-fill"></i></button></td>'
+                    + '<td scope="row"><button codigo="' + item.id + '" class="bt-del btn btn-danger"><i class="bi bi-x-circle-fill"></i></button></td>'
                     + '</tr>'
 
                 $("#lista").append(html);

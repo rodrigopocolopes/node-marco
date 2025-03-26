@@ -3,8 +3,9 @@
 
 import express from "express";
 import cors from "cors";
+import sha1 from "sha1";
 
-import { add, del, update, list, search } from "./model/index.js"
+import { add, del, update, list, search, logar } from "./model/index.js"
 
 const app = express();
 
@@ -56,7 +57,22 @@ app.post("/clientes/delete", async (req, res) => {
 });
 
 
-// 
+app.post("/login", async function (req, res) {
+
+    let { usuario, senha } = req.body;
+
+    let hash = sha1(senha)
+
+    let retorno = await logar(usuario, hash);
+
+    retorno = (retorno) ? retorno : "false";
+
+    res.json(retorno);
+
+
+
+});
+
 app.listen(porta, () => {
     console.log("Servidor iniciado")
-})
+});
